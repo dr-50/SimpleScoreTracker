@@ -9,7 +9,7 @@ function selectedInput(elem){
     // console.log('SelectedInput-TotalInputs: ', inputCountTotal)
     if(elem.id==inputCountTotal){
         newInput = document.createElement('input');
-        newInput.setAttribute("type", "text")
+        newInput.setAttribute("type", "number")
         newInput.id=inputCountTotal+1
         newInput.setAttribute("onclick", "selectedInput(this)");
         newInput.setAttribute("onblur", "shotTotal()")
