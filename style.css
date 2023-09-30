@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.banner{
+    background-color: teal;
+    height: 30px;
+}
+
+.banner h3{
+    margin-left: 15px;
+}
+
+/* graphics */
+.graphics{
+    height: 200px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.barChart{
+    height: 100%;
+    width: 50%;
+    margin-left: 10px;
+}
+
+.TenTracker{
+    height: 100%;
+    width: 50%;
+}
+.TenTracker ol{
+    margin-left: 50%;
+}
+.TenTracker h5{
+    margin-left: 35%;
+}
+
+.score-input{
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    margin-left: 50%;
+    overflow-y: scroll;
+    height: 500px;
+}
+
+.score-input input{
+    width: 50px;
+    margin-top: 3px;
+}

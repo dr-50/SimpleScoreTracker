@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <title>SimpleScoreTracker🎯</title>
+</head>
+<body>
+    <div class="banner">
+        <h3>Simple Score Tracker</h3>
+    </div>
+
+    <div class="graphics">
+        <div class="barChart">
+            <canvas id="myChart"></canvas>
+        </div>
+        <div class="scoreboard">
+        <div class="TenTracker">
+            <h5>Longest 10 Streak</h5>
+            <ol>
+                <li>5</li>
+            </ol>
+        </div>
+        <div class="shot-total">
+            <h5>Shot Total: <span id="shot-total-value"></span></h5>
+        </div>
+    </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <div class="score-input" id="scoreInput">
+        <input type="text" id="1" onclick="selectedInput(this)" onblur="shotTotal()">
+        <input type="text" id="2" onclick="selectedInput(this)"  onblur="shotTotal()">
+        <!-- <input type="text" id="3" onclick="selectedInput(this)" >
+        <input type="text" id="4" onclick="selectedInput(this)" >
+        <input type="text" id="5" onclick="selectedInput(this)" >
+        <input type="text" id="6" onclick="selectedInput(this)" >
+        <input type="text" id="7" onclick="selectedInput(this)" >
+        <input type="text" id="8" onclick="selectedInput(this)" >
+        <input type="text" id="9" onclick="selectedInput(this)" >
+        <input type="text" id="10" onclick="selectedInput(this)" >
+        <input type="text" id="11" onclick="selectedInput(this)" >
+        <input type="text" id="12" onclick="selectedInput(this)" > -->
+    </div>
+
+
+</body>
+<script src="./script.js"></script>
+
+<script>
+    const ctx = document.getElementById('myChart');
+  
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['X', '10', '9', '8', '7', '6'],
+      datasets: [{
+        label: 'Count By Score',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+  </script>
+</html>
