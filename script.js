@@ -90,14 +90,14 @@ function colorEmpty(inputTotalCount){
 
 }
 //function clear chart
-// function removeChart(){
-//     //Delete existing chart
-// myChart = document.getElementById('myChart')
-// barChart.removeChild(myChart)
-// newElChart = document.createElement('canvas')
-// newElChart.id='myChart'
-// barChart.appendChild(newElChart)
-// }
+function removeChart(){
+    //Delete existing chart
+myChart = document.getElementById('myChart')
+barChart.removeChild(myChart)
+newElChart = document.createElement('canvas')
+newElChart.id='myChart'
+barChart.appendChild(newElChart)
+}
 
 //function create chart
 function newChart(){
@@ -169,8 +169,8 @@ function clickOut(el){
         scrollToBottom();
     }
 
-    //remove chart
-    // removeChart()
+    // remove chart
+    removeChart()
     //new chart
     newChart()
 }
