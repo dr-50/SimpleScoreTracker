@@ -19,12 +19,11 @@
         <div class="scoreboard">
         <div class="TenTracker">
             <h5>Longest 10 Streak</h5>
-            <ol>
-                <li>5</li>
+            <ol id="ten-streak-tracker">
             </ol>
         </div>
         <div class="shot-total">
-            <h5>Shot Total: <span id="shot-total-value"></span></h5>
+            <h5>Shot Total: <span id="shot-total-value">0</span></h5>
         </div>
     </div>
     </div>
@@ -33,19 +32,10 @@
 
 
     <div class="score-input" id="scoreInput">
-        <input type="number" id="1" onclick="selectedInput(this)" onblur="shotTotal()">
-        <input type="number" id="2" onclick="selectedInput(this)"  onblur="shotTotal()">
-        <!-- <input type="text" id="3" onclick="selectedInput(this)" >
-        <input type="text" id="4" onclick="selectedInput(this)" >
-        <input type="text" id="5" onclick="selectedInput(this)" >
-        <input type="text" id="6" onclick="selectedInput(this)" >
-        <input type="text" id="7" onclick="selectedInput(this)" >
-        <input type="text" id="8" onclick="selectedInput(this)" >
-        <input type="text" id="9" onclick="selectedInput(this)" >
-        <input type="text" id="10" onclick="selectedInput(this)" >
-        <input type="text" id="11" onclick="selectedInput(this)" >
-        <input type="text" id="12" onclick="selectedInput(this)" > -->
+        <input type="number" id="1" onblur="clickOut(this)">
+        <input type="number" id="2" onblur="clickOut(this)">
     </div>
+    <div id="output"></div>
 
 
 </body>
