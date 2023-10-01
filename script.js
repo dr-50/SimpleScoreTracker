@@ -4,20 +4,14 @@ const inputCounter = 0
 function scoreArrayFunc(){
     var inputs = document.getElementsByTagName('input');
     var array = []; 
-    for (var i=0; i<inputs.length; i++){
-        array.push(inputs[i].value)
-    }
-    // return inputValArr;
-// }
-
-// Function for counting consecutive values in array
-// function cntConsecutiveElements(){
-    // 10 Streak
     let result = [];
     let counter = 1;
 
-    // let array = scoreArrayFunc()
-    
+    //create an array of all input values
+    for (var i=0; i<inputs.length; i++){
+        array.push(inputs[i].value)
+    }
+
     //create an array with count of consecutive values
     for (let i = 0; i<array.length; i++){
         if (array[i]=== array[i + 1]){
@@ -26,41 +20,33 @@ function scoreArrayFunc(){
             result.push(array[i] +"." + counter);
             counter = 1
         }
-        // console.log("results: ", result);
-        // return result
-        // arrayTenFilter(result)
     }
     
-// }
-
-//Function for filtering array to values of 10. Sort desc. Pass array result from cntConsecutiveElements function.
-// function arrayTenFilter(scoreArray){
-    // let consecCount = cntConsecutiveElements()
-    
+    //regex expression for finding values from array with scores of ten format of {score}.{streak} ex 10.3
     const re = RegExp(/10/i)
     const allTenStreaks = result.filter( v => v.match(re)).sort().reverse()
     let tenStreaks = []
     let tenStreakTracker = document.getElementById('ten-streak-tracker')
 
+    //add logic for identifying current streak
+    //
+
     //clear ol value to be updated 
     tenStreakTracker.innerHTML='';
-    
-    // return matches
-    console.log('TenCount; ', allTenStreaks)
+
+    //create an array of just score streaks of 10 scores only 
     for (i=0; i<allTenStreaks.length; i++){
         let topTenStreaksDec= allTenStreaks[i].toString().indexOf(".");
         let tenStreakValue = allTenStreaks[i].toString().substring(topTenStreaksDec+1);
         tenStreaks.push(tenStreakValue)
     }
-    
+
+    //create an array of streaks from above array
     for (i=0; i<tenStreaks.length; i++){
         var li = document.createElement('li');
         li.innerText = tenStreaks[i];
         tenStreakTracker.appendChild(li);
     }
-    // let topTenStreaksDec = allTenStreaks.toString().indexOf(".")
-    // let topTenStreaks = allTenStreaks.toString().substring(topTenStreaksDec+1);
-    // console.log(topTenStreaks)
 }
 
 //Create new input number field
@@ -68,7 +54,6 @@ function newInputCreate(inputCountTotal){
     newInput = document.createElement('input');
     newInput.setAttribute("type", "number")
     newInput.id=inputCountTotal+1
-    // newInput.setAttribute("onclick", "clickIn(this)");
     newInput.setAttribute("onblur", "clickOut(this)")
     document.getElementById('scoreInput').appendChild(newInput)
 }
@@ -84,15 +69,11 @@ function shotTotal(){
     var numShots = inputValArr.filter(Boolean).length;
     var shotTotalEl = document.getElementById('shot-total-value')
     shotTotalEl.innerHTML=numShots
-
-    // var consecCount = cntConsecutiveElements(inputValArr)
 }
 
 function scrollToBottom(){
     var scoreIn = document.getElementById('scoreInput');
-    // var output = document.querySelector('#output');
     scoreIn.scrollTo(0, scoreIn.scrollHeight)
-    // console.log(scoreIn.scrollHeight)
 }
 
 function colorEmpty(inputTotalCount){
@@ -101,13 +82,72 @@ function colorEmpty(inputTotalCount){
     for(i=0; i<inputs.length; i++){
         if(inputs[i].value !== ""){
             inputs[i].style.backgroundColor = "";
-            // console.log("blank ", inputs.id)
         }
         else {
             inputs[i].style.backgroundColor = "lightpink"
-            // console.log("value ", inputs.id)
         }
     }
+
+}
+//function clear chart
+function removeChart(){
+    //Delete existing chart
+myChart = document.getElementById('myChart')
+barChart.removeChild(myChart)
+newElChart = document.createElement('canvas')
+newElChart.id='myChart'
+barChart.appendChild(newElChart)
+}
+
+//function create chart
+function newChart(){
+let ctx = document.getElementById('myChart');
+let barChart = document.getElementById('barChart');
+let inputs = document.getElementsByTagName('input')
+let scores = []
+
+
+
+
+
+//array for scores
+for (var i=0; i<inputs.length; i++){
+    scores.push(inputs[i].value)
+}
+scores = scores.filter(Boolean)
+
+//count of score values
+var scoreCounts = scores.reduce(function(obj, b) {
+    obj[b] = ++obj[b] || 1;
+    return obj;
+}, {})
+
+console.log('Score Object: ', scoreCounts);
+console.log('Object Keys: ', Object.keys(scoreCounts))
+console.log('Object Values: ', Object.values(scoreCounts))
+
+//new array for unique scores to be used as labels
+let uniqueScoreLabels = [... new Set(scores)]
+
+new Chart(ctx, {
+type: 'bar',
+data: {
+  labels: Object.keys(scoreCounts),
+  datasets: [{
+    label: 'Count By Score',
+    data: Object.values(scoreCounts),
+    borderWidth: 1
+  }]
+},
+options: {
+  scales: {
+    y: {
+      beginAtZero: true
+    }
+  }
+}
+});
+
 
 }
 
@@ -115,9 +155,8 @@ function colorEmpty(inputTotalCount){
 function clickOut(el){
     //get total number of inputs on screen
     var inputCountTotal = document.getElementsByTagName('input').length
-    //update shot total
+    //update shot total on screen
     shotTotal()
-
     //Get consecutive 10 score count
     scoreArrayFunc()
 
@@ -128,5 +167,12 @@ function clickOut(el){
     //highlight empty boxes
     colorEmpty(inputCountTotal); 
     //scroll to bottom of input div when entering new score
-    scrollToBottom();
+    if(el.id==inputCountTotal){
+        scrollToBottom();
+    }
+
+    //remove chart
+    removeChart()
+    //new chart
+    newChart()
 }

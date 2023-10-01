@@ -13,7 +13,7 @@
     </div>
 
     <div class="graphics">
-        <div class="barChart">
+        <div class="barChart" id="barChart">
             <canvas id="myChart"></canvas>
         </div>
         <div class="scoreboard">
@@ -42,26 +42,6 @@
 <script src="./script.js"></script>
 
 <script>
-    const ctx = document.getElementById('myChart');
-  
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['X', '10', '9', '8', '7', '6'],
-      datasets: [{
-        label: 'Count By Score',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });
 
 
   </script>
