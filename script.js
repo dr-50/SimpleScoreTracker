@@ -116,18 +116,16 @@ for (var i=0; i<inputs.length; i++){
 }
 scores = scores.filter(Boolean)
 
-//count of score values
+//count of score values pushed into object
 var scoreCounts = scores.reduce(function(obj, b) {
     obj[b] = ++obj[b] || 1;
     return obj;
 }, {})
 
-console.log('Score Object: ', scoreCounts);
-console.log('Object Keys: ', Object.keys(scoreCounts))
-console.log('Object Values: ', Object.values(scoreCounts))
+// console.log('Score Object: ', scoreCounts);
+// console.log('Object Keys: ', Object.keys(scoreCounts))
+// console.log('Object Values: ', Object.values(scoreCounts))
 
-//new array for unique scores to be used as labels
-let uniqueScoreLabels = [... new Set(scores)]
 
 new Chart(ctx, {
 type: 'bar',
