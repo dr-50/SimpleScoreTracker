@@ -31,9 +31,9 @@
     width: 50%;
     font-size: 24px;
 }
-.TenTracker ol{
+/* .TenTracker ol{
     margin-left: 50%;
-}
+} */
 .TenTracker h5{
     margin-left: 35%;
 }
@@ -48,10 +48,27 @@
     margin-left: 40vw;
     overflow-y: scroll;
     height: 200px;
+    margin-top: 20px;
 }
 
 .score-input input{
     width: 50px;
     margin-top: 3px;
     font-size: 24px;
+}
+
+@media screen and (max-width: 670px){
+    .graphics{flex-direction: row;}
+    .barChart{width: 90%;}
+    .scoreboard{width: 100%; margin-left: 0%; display: flex; flex-direction: column; align-items: center;}
+    .TenTracker{width: 100%; display: flex; flex-direction: column; align-items: center;}
+    /* .TenTracker ol {margin-left: auto;} */
+    .TenTracker h5, ol{margin-left: 0; justify-content: center; counter-reset: section; align-items: center; justify-content: center;}
+    .TenTracker ol li{display: inline-block; margin: 10px; height: 20px;}
+    .TenTracker ol li::before{
+        counter-increment: section; 
+        content: counter(section) ". ";
+        color: gray;
+    }
+    .score-input{margin-top: 150px; padding-top: 5px;}
 }

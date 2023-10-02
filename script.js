@@ -42,11 +42,18 @@ function scoreArrayFunc(){
     }
 
     //create an array of streaks from above array
-    for (i=0; i<tenStreaks.length; i++){
-        var li = document.createElement('li');
-        li.innerText = tenStreaks[i];
-        tenStreakTracker.appendChild(li);
-    }
+    if(tenStreaks.length>5){
+        for (i=0; i<5; i++){
+            var li = document.createElement('li');
+            li.innerText = tenStreaks[i];
+            tenStreakTracker.appendChild(li);
+        }
+    } else {
+        for (i=0; i<tenStreaks.length; i++){
+            var li = document.createElement('li');
+            li.innerText = tenStreaks[i];
+            tenStreakTracker.appendChild(li);
+    }}
 }
 
 //Create new input number field
@@ -102,7 +109,7 @@ barChart.appendChild(newElChart)
 //function create chart
 function newChart(){
 let ctx = document.getElementById('myChart');
-let barChart = document.getElementById('barChart');
+// let barChart = document.getElementById('barChart');
 let inputs = document.getElementsByTagName('input')
 let scores = []
 
